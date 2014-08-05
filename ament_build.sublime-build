@@ -1,0 +1,8 @@
+{
+	"cmd": "ament build",
+	"env": {},
+	"shell": true,
+	"working_dir": "${project_path}",
+	"file_regex": "^(/[^:]+):([0-9]+):[0-9]+: (error|warning): .*$",
+	"syntax": "Packages/User/ament/ament_build.tmLanguage"
+}

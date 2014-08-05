@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array/>
+	<key>name</key>
+	<string>ament build</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string>Topological Order</string>
+			<key>begin</key>
+			<string>^# Topological order$</string>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>comment</string>
+			<key>contentName</key>
+			<string>entity.name.class</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Compiler warning</string>
+			<key>begin</key>
+			<string>^(/[^:]+:[0-9]+):[0-9]+: warning:.+$</string>
+			<key>end</key>
+			<string>^ *\^$</string>
+			<key>name</key>
+			<string>sublimelinter.mark.warning</string>
+			<key>contentName</key>
+			<string>sublimelinter.mark.warning</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.filename</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Compiler error</string>
+			<key>begin</key>
+			<string>^(/[^:]+:[0-9]+):[0-9]+: error:.+$</string>
+			<key>end</key>
+			<string>^ *\^$</string>
+			<key>name</key>
+			<string>message.error</string>
+			<key>contentName</key>
+			<string>message.error</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.filename</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Building package</string>
+			<key>match</key>
+			<string>^(# Building: ).+$</string>
+			<key>name</key>
+			<string>entity.name.class</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>comment</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Comment</string>
+			<key>match</key>
+			<string>^#.*$</string>
+			<key>name</key>
+			<string>comment</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Make error</string>
+			<key>match</key>
+			<string>^make(\[\d+\])?: \*\*\* \[.+\] Error \d+$</string>
+			<key>name</key>
+			<string>message.error</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>text.ament_build</string>
+	<key>uuid</key>
+	<string>cd48f328-42ba-8350-1c7e-3c38bea5a227</string>
+</dict>
+</plist>
