@@ -4,5 +4,23 @@
 	"shell": true,
 	"working_dir": "${project_path}",
 	"file_regex": "^(/[^:]+):([0-9]+):[0-9]+: (error|warning): .*$",
-	"syntax": "Packages/User/ament/ament_build.tmLanguage"
+	"syntax": "Packages/User/ament/ament_build.tmLanguage",
+	"variants": [
+		{
+			"cmd": "ament build",
+			"env": {
+				"ROS_DDS_IMPLEMENTATION": "connext",
+				"ROS_DDS_TYPE": "static"
+			},
+			"name": "ament build: Connext static"
+		},
+		{
+			"cmd": "ament build",
+			"env": {
+				"ROS_DDS_IMPLEMENTATION": "connext",
+				"ROS_DDS_TYPE": "dynamic"
+			},
+			"name": "ament build: Connext dynamic"
+		}
+	]
 }
