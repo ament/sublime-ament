@@ -62,6 +62,58 @@
 		</dict>
 		<dict>
 			<key>comment</key>
+			<string>CMake warning</string>
+			<key>begin</key>
+			<string>^CMake Warning at (/[^:]+:[0-9]+).*$</string>
+			<key>end</key>
+			<string>^.*$</string>
+			<key>name</key>
+			<string>sublimelinter.mark.warning</string>
+			<key>contentName</key>
+			<string>sublimelinter.mark.warning</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.filename</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>CMake error</string>
+			<key>begin</key>
+			<string>^CMake Error at (/[^:]+:[0-9]+).*$</string>
+			<key>end</key>
+			<string>^ *$</string>
+			<key>name</key>
+			<string>message.error</string>
+			<key>contentName</key>
+			<string>message.error</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.filename</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>CMake call stack</string>
+			<key>begin</key>
+			<string>^Call Stack \(most recent call first\):$</string>
+			<key>end</key>
+			<string>^ *$</string>
+			<key>name</key>
+			<string>message.error</string>
+			<key>contentName</key>
+			<string>message.error</string>
+		</dict>
+		<dict>
+			<key>comment</key>
 			<string>Building package</string>
 			<key>match</key>
 			<string>^(# Building: ).+$</string>
