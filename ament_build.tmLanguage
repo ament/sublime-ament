@@ -6,6 +6,27 @@
 	<array/>
 	<key>name</key>
 	<string>ament build</string>
+	<key>repository</key>
+	<dict>
+		<key>filenameWithLineInCallStack</key>
+		<dict>
+			<key>comment</key>
+			<string>Filename and line number separated by a colon</string>
+			<key>match</key>
+			<string>/[^:]+:[0-9]+</string>
+			<key>name</key>
+			<string>entity.name.filename</string>
+		</dict>
+		<key>packageName</key>
+		<dict>
+			<key>comment</key>
+			<string>Package name</string>
+			<key>match</key>
+			<string>[a-z][a-z_0-9]*</string>
+			<key>name</key>
+			<string>entity.name.class</string>
+		</dict>
+	</dict>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -17,8 +38,119 @@
 			<string>^$</string>
 			<key>name</key>
 			<string>comment</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#packageName</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Building package</string>
+			<key>begin</key>
+			<string>^# Building:</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>comment</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#packageName</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Invoking command</string>
+			<key>begin</key>
+			<string>^# Invoking:</string>
+			<key>end</key>
+			<string>\(in (.+)\)$</string>
+			<key>name</key>
+			<string>comment</string>
 			<key>contentName</key>
 			<string>entity.name.class</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>meta.structure.dictionary.json string.quoted.double.json</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>CMake call stack</string>
+			<key>begin</key>
+			<string>^Call Stack \(most recent call first\):$</string>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>sublimelinter.mark.warning</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#filenameWithLineInCallStack</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>CMake warning</string>
+			<key>begin</key>
+			<string>^CMake Warning at (/[^:]+:[0-9]+).*$</string>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>sublimelinter.mark.warning</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.filename</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>CMake error</string>
+			<key>begin</key>
+			<string>^CMake Error at (/[^:]+:[0-9]+).*$</string>
+			<key>end</key>
+			<string>^$</string>
+			<key>name</key>
+			<string>message.error</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>CMake configure incomplete</string>
+			<key>match</key>
+			<string>^-- Configuring incomplete, errors occurred!$</string>
+			<key>name</key>
+			<string>message.error</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Make error</string>
+			<key>match</key>
+			<string>^make(\[\d+\])?: \*\*\* \[.+\] Error \d+$</string>
+			<key>name</key>
+			<string>message.error</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -28,8 +160,6 @@
 			<key>end</key>
 			<string>^ *\^$</string>
 			<key>name</key>
-			<string>sublimelinter.mark.warning</string>
-			<key>contentName</key>
 			<string>sublimelinter.mark.warning</string>
 			<key>captures</key>
 			<dict>
@@ -49,82 +179,12 @@
 			<string>^ *\^$</string>
 			<key>name</key>
 			<string>message.error</string>
-			<key>contentName</key>
-			<string>message.error</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.filename</string>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>CMake warning</string>
-			<key>begin</key>
-			<string>^CMake Warning at (/[^:]+:[0-9]+).*$</string>
-			<key>end</key>
-			<string>^.*$</string>
-			<key>name</key>
-			<string>sublimelinter.mark.warning</string>
-			<key>contentName</key>
-			<string>sublimelinter.mark.warning</string>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.filename</string>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>CMake error</string>
-			<key>begin</key>
-			<string>^CMake Error at (/[^:]+:[0-9]+).*$</string>
-			<key>end</key>
-			<string>^ *$</string>
-			<key>name</key>
-			<string>message.error</string>
-			<key>contentName</key>
-			<string>message.error</string>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.filename</string>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>CMake call stack</string>
-			<key>begin</key>
-			<string>^Call Stack \(most recent call first\):$</string>
-			<key>end</key>
-			<string>^ *$</string>
-			<key>name</key>
-			<string>message.error</string>
-			<key>contentName</key>
-			<string>message.error</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Building package</string>
-			<key>match</key>
-			<string>^(# Building: ).+$</string>
-			<key>name</key>
-			<string>entity.name.class</string>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>comment</string>
+					<string>variable.parameter</string>
 				</dict>
 			</dict>
 		</dict>
@@ -135,14 +195,6 @@
 			<string>^#.*$</string>
 			<key>name</key>
 			<string>comment</string>
-		</dict>
-		<dict>
-			<key>comment</key>
-			<string>Make error</string>
-			<key>match</key>
-			<string>^make(\[\d+\])?: \*\*\* \[.+\] Error \d+$</string>
-			<key>name</key>
-			<string>message.error</string>
 		</dict>
 	</array>
 	<key>scopeName</key>

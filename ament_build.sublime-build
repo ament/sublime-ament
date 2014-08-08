@@ -3,7 +3,7 @@
 	"env": {},
 	"shell": true,
 	"working_dir": "${project_path}",
-	"file_regex": "^(/[^:]+):([0-9]+):[0-9]+: (error|warning): .*$",
+	"file_regex": "^(?:CMake (?:Error|Warning) at |  )?(/[^:]+):([0-9]+).*$",
 	"syntax": "Packages/User/ament/ament_build.tmLanguage",
 	"variants": [
 		{
