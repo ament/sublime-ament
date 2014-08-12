@@ -1,26 +1,22 @@
 {
-	"cmd": "ament build",
+	"cmd": "python -u `which ament` build ${project_path}",
 	"env": {},
 	"shell": true,
-	"working_dir": "${project_path}",
+	"working_dir": "${project_path}/..",
 	"file_regex": "^(?:CMake (?:Error|Warning) at |  )?(/[^:]+):([0-9]+).*$",
 	"syntax": "Packages/User/ament/ament_build.tmLanguage",
 	"variants": [
 		{
-			"cmd": "ament build",
-			"env": {
-				"ROS_DDS_IMPLEMENTATION": "connext",
-				"ROS_DDS_TYPE": "static"
-			},
-			"name": "ament build: Connext static"
+			"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DROS_MIDDLEWARE_IMPLEMENTATION=ros_middleware_connext_cpp",
+			"name": "ament build: Connext"
 		},
 		{
-			"cmd": "ament build",
-			"env": {
-				"ROS_DDS_IMPLEMENTATION": "connext",
-				"ROS_DDS_TYPE": "dynamic"
-			},
-			"name": "ament build: Connext dynamic"
+			"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DROS_MIDDLEWARE_IMPLEMENTATION=ros_middleware_connext_xtypes_dynamic_cpp",
+			"name": "ament build: Connext XTypes Dynamic"
+		},
+		{
+			"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DROS_MIDDLEWARE_IMPLEMENTATION=ros_middleware_opensplice_cpp",
+			"name": "ament build: OpenSplice"
 		}
 	]
 }

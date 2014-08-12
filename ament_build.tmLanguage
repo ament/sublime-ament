@@ -8,6 +8,15 @@
 	<string>ament build</string>
 	<key>repository</key>
 	<dict>
+		<key>filenameWithLine</key>
+		<dict>
+			<key>comment</key>
+			<string>Filename and line number separated by a colon</string>
+			<key>match</key>
+			<string>/[^:]+:[0-9]+</string>
+			<key>name</key>
+			<string>storage.type</string>
+		</dict>
 		<key>filenameWithLineInCallStack</key>
 		<dict>
 			<key>comment</key>
@@ -48,7 +57,7 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Building package</string>
+			<string>Building: package</string>
 			<key>begin</key>
 			<string>^# Building:</string>
 			<key>end</key>
@@ -65,18 +74,96 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Invoking command</string>
-			<key>begin</key>
-			<string>^# Invoking:</string>
-			<key>end</key>
-			<string>\(in (.+)\)$</string>
+			<string>Build package with context</string>
+			<key>match</key>
+			<string>^Build package '(.+)' with context:$</string>
 			<key>name</key>
 			<string>comment</string>
-			<key>contentName</key>
-			<string>entity.name.class</string>
-			<key>endCaptures</key>
+			<key>captures</key>
 			<dict>
 				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.class</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Context</string>
+			<key>begin</key>
+			<string>^-+$</string>
+			<key>end</key>
+			<string>^-+$</string>
+			<key>name</key>
+			<string>comment</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>Arrow</string>
+					<key>match</key>
+					<string>^.*(=&gt;).*$</string>
+					<key>name</key>
+					<string>sublimelinter.gutter-mark</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>meta.diff</string>
+						</dict>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Building package</string>
+			<key>match</key>
+			<string>^\+\+\+ Building '(.+)'$</string>
+			<key>name</key>
+			<string>comment</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.class</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Installing package</string>
+			<key>match</key>
+			<string>^\+\+\+ Installing '(.+)'$</string>
+			<key>name</key>
+			<string>comment</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.class</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Invoking command</string>
+			<key>match</key>
+			<string>^==&gt; '(.+)' in '(.+)'$</string>
+			<key>name</key>
+			<string>comment</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function</string>
+				</dict>
+				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>meta.structure.dictionary.json string.quoted.double.json</string>
