@@ -57,9 +57,9 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Building: package</string>
+			<string>Building / skipping: package</string>
 			<key>begin</key>
-			<string>^# Building:</string>
+			<string>^# (Building|Skipping):</string>
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
@@ -191,7 +191,7 @@
 			<key>comment</key>
 			<string>CMake warning</string>
 			<key>begin</key>
-			<string>^CMake Warning at (/[^:]+:[0-9]+).*$</string>
+			<string>^CMake Warning(?: at (/[^:]+:[0-9]+).*|:)$</string>
 			<key>end</key>
 			<string>^$</string>
 			<key>name</key>
