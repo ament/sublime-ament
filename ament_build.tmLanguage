@@ -57,26 +57,9 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>Building / skipping: package</string>
-			<key>begin</key>
-			<string>^# (Building|Skipping):</string>
-			<key>end</key>
-			<string>$</string>
-			<key>name</key>
-			<string>comment</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#packageName</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>comment</key>
 			<string>Build package with context</string>
 			<key>match</key>
-			<string>^Build package '(.+)' with context:$</string>
+			<string>^Process package '(.+)' with context:$</string>
 			<key>name</key>
 			<string>comment</string>
 			<key>captures</key>
