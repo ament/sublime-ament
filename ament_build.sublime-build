@@ -1,5 +1,5 @@
 {
-	"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=Debug",
+	"cmd": "python3 -u ${project_path}/ament/ament_tools/scripts/ament.py build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=Debug",
 	"env": {},
 	"shell": true,
 	"working_dir": "${project_path}/..",
@@ -7,28 +7,20 @@
 	"syntax": "Packages/User/ament/ament_build.tmLanguage",
 	"variants": [
 		{
-			"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=Debug -DROS_MIDDLEWARE_IMPLEMENTATION=ros_middleware_connext_cpp",
-			"name": "ament build (Debug): Connext"
+			"cmd": "python3 -u ${project_path}/ament/ament_tools/scripts/ament.py build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=Debug",
+			"name": "ament build (bootstrap): Debug"
 		},
 		{
-			"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=Debug -DROS_MIDDLEWARE_IMPLEMENTATION=ros_middleware_connext_xtypes_dynamic_cpp",
-			"name": "ament build (Debug): Connext XTypes Dynamic"
+			"cmd": "python3 -u ${project_path}/ament/ament_tools/scripts/ament.py build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo",
+			"name": "ament build (bootstrap): RelWithDebInfo"
 		},
 		{
-			"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=Debug -DROS_MIDDLEWARE_IMPLEMENTATION=ros_middleware_opensplice_cpp",
-			"name": "ament build (Debug): OpenSplice"
+			"cmd": "python3 -u `which ament` build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=Debug",
+			"name": "ament build (with Python environment): Debug"
 		},
 		{
-			"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo -DROS_MIDDLEWARE_IMPLEMENTATION=ros_middleware_connext_cpp",
-			"name": "ament build (RelWithDebInfo): Connext"
-		},
-		{
-			"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo -DROS_MIDDLEWARE_IMPLEMENTATION=ros_middleware_connext_xtypes_dynamic_cpp",
-			"name": "ament build (RelWithDebInfo): Connext XTypes Dynamic"
-		},
-		{
-			"cmd": "python -u `which ament` build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo -DROS_MIDDLEWARE_IMPLEMENTATION=ros_middleware_opensplice_cpp",
-			"name": "ament build (RelWithDebInfo): OpenSplice"
+			"cmd": "python3 -u `which ament` build ${project_path} --ament-cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo",
+			"name": "ament build (with Python environment): RelWithDebInfo"
 		}
 	]
 }
